@@ -1,0 +1,17 @@
+diff --git a/feeds/luci/applications/luci-app-aria2/luasrc/controller/aria2.lua b/feeds/luci/applications/luci-app-aria2/luasrc/controller/aria2.lua
+index 56172ec..b8bb239 100644
+--- a/feeds/luci/applications/luci-app-aria2/luasrc/controller/aria2.lua
++++ b/feeds/luci/applications/luci-app-aria2/luasrc/controller/aria2.lua
+@@ -18,10 +18,10 @@ function index()
+ 		return
+ 	end
+ 
+-	local page = entry({"admin", "services", "aria2"}, cbi("aria2"), _("Aria2 Settings"))
++	local page = entry({"admin", "nas", "aria2"}, cbi("aria2"), _("Aria2 Settings"))
+ 	page.dependent = true
+ 
+-	entry({"admin", "services", "aria2", "status"}, call("status")).leaf = true
++	entry({"admin", "nas", "aria2", "status"}, call("status")).leaf = true
+ 
+ end
+ 
