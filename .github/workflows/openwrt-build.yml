@@ -9,9 +9,10 @@ on:
     # paths:
     #   - 'start'
   schedule:
-    - cron: 0 20 * * *
+    - cron: 0 0 * * 0
   # watch:
   #   types: [started]
+  workflow_dispatch:
 
 env:
   RUN_VALIDATION: true
@@ -41,20 +42,25 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Cache download & ccache
-      uses: actions/cache@v2
-      with:
-        path: ~/cache
-        key: openwrt-${{ runner.os }}-${{ github.sha }}
-        restore-keys: |
-          openwrt-${{ runner.os }}-${{ github.sha }}
-          openwrt-${{ runner.os }}-
-          openwrt-
+    #- name: ccache
+    #  uses: hendrikmuhs/ccache-action@v1
+    #  with:
+    #    key: ${{ runner.os }}
+
+    #- name: Cache download & ccache
+    #  uses: actions/cache@v2
+    #  with:
+    #    path: ~/cache
+    #    key: openwrt-${{ runner.os }}-${{ github.sha }}
+    #    restore-keys: |
+    #      openwrt-${{ runner.os }}-${{ github.sha }}
+    #      openwrt-${{ runner.os }}-
+    #      openwrt-
 
     - name: Build
       id: compile
       run: |
-        ./bin/build-openwrt.sh ${{matrix.target}}
+        ./bin/build-openwrt.sh ${{matrix.target}} &&
         echo "::set-output name=status::success"
 
     - name: Assemble Firmware

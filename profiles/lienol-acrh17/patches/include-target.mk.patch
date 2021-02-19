@@ -1,15 +1,15 @@
 diff --git a/include/target.mk b/include/target.mk
-index 348b485..afa60e9 100644
+index 1234029..85b863c 100644
 --- a/include/target.mk
 +++ b/include/target.mk
-@@ -14,9 +14,7 @@ DEVICE_TYPE?=router
+@@ -26,9 +26,7 @@ DEFAULT_PACKAGES:=\
+ 	uclient-fetch \
+ 	urandom-seed \
+ 	luci luci-compat wget-ssl curl ca-certificates htop \
+-	default-settings luci-app-upnp luci-app-wol luci-app-vlmcsd luci-app-ramfree \
+-	luci-app-ddns ddns-scripts-cloudflare ddns-scripts_aliyun ddns-scripts_dnspod \
+-	luci-app-timecontrol luci-app-control-timewol luci-app-control-webrestriction luci-app-control-weburl \
++	default-settings \
+ 	urngd
  
- # Default packages - the really basic set
- DEFAULT_PACKAGES:=base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd urandom-seed urngd luci luci-compat wget-ssl curl \
--default-settings luci-app-wol luci-app-vlmcsd luci-app-ramfree \
--luci-app-ddns ddns-scripts_aliyun ddns-scripts_dnspod \
--luci-app-timecontrol luci-app-control-timewol luci-app-control-webrestriction luci-app-control-weburl
-+default-settings
- # For nas targets
- DEFAULT_PACKAGES.nas:=block-mount fdisk lsblk mdadm
- # For router targets
+ ifneq ($(CONFIG_SELINUX),)
