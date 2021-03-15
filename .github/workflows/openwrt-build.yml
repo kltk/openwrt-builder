@@ -9,9 +9,10 @@ on:
     # paths:
     #   - 'start'
   schedule:
-    - cron: 0 20 * * *
+    - cron: 0 0 0 * *
   # watch:
   #   types: [started]
+  workflow_dispatch:
 
 env:
   RUN_VALIDATION: true
