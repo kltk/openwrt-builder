@@ -60,7 +60,7 @@ jobs:
     - name: Build
       id: compile
       run: |
-        ./bin/build-openwrt.sh ${{matrix.target}}
+        ./bin/build-openwrt.sh ${{matrix.target}} &&
         echo "::set-output name=status::success"
 
     - name: Assemble Firmware
