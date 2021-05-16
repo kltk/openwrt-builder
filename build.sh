@@ -8,10 +8,21 @@ sudo DOCKER_BUILDKIT=1 docker build \
             --progress=plain \
             -t $container .
 
+#sudo docker run \
+#        -v `pwd`:/home/openwrt/workdir \
+#        -v `pwd`/output:/home/openwrt/output \
+#        -v $container-cache:/home/openwrt/cache \
+#        -dit $container sh -c \
+#        "sudo chown openwrt:openwrt -R workdir output cache && \
+#        workdir/bin/build-openwrt.sh lienol-acrh17"
+
 sudo docker run \
         -v `pwd`:/home/openwrt/workdir \
         -v `pwd`/output:/home/openwrt/output \
         -v $container-cache:/home/openwrt/cache \
         -dit $container sh -c \
         "sudo chown openwrt:openwrt -R workdir output cache && \
-        workdir/bin/build-openwrt.sh lienol-acrh17"
+        touch output/docker.log && \
+        /usr/bin/less output/docker.log"
+
+sudo docker exec -it `sudo docker ps -q -l` workdir/bin/build-openwrt.sh lienol-acrh17 > output/docker.log
