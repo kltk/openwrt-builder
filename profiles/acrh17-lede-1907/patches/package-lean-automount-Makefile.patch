@@ -1,15 +1,15 @@
 diff --git a/package/lean/automount/Makefile b/package/lean/automount/Makefile
-index 8c5e807..3ae9743 100755
+index 7bcd20079..cd9b7800c 100644
 --- a/package/lean/automount/Makefile
 +++ b/package/lean/automount/Makefile
-@@ -29,8 +29,8 @@ endef
- 
+@@ -31,8 +31,8 @@ endef
+
  define Package/automount/install
- 	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
 -	$(INSTALL_BIN) ./files/15-automount $(1)/etc/15-automount
 -	$(INSTALL_BIN) ./files/zzz-move-automount $(1)/etc/uci-defaults/zzz-move-automount
 +	$(INSTALL_DIR) $(1)/etc/hotplug.d/block
 +	$(INSTALL_BIN) ./files/15-automount $(1)/etc/hotplug.d/block/15-automount
  endef
- 
+
  $(eval $(call BuildPackage,automount))

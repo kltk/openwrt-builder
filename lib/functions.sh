@@ -1,72 +1,82 @@
-#!/bin/sh
+#!/bin/bash
 
-patchdir() {
-  echo "::group::patch dir use $1"
-  for i in $1/*.patch; do
-    patch -Ntp$2 < $i
-  done
+grouprun() {
+  label=$*
+  if [ "$2" != "" ]; then
+    label=$1
+    shift
+  fi
+  echo "::group::$label"
+  $*
   echo "::endgroup::"
-}
-
-runscript() {
-  if [ -f $1 ]; then
-    echo "::group::run script $1"
-    chmod +x $1
-    . $1
-    echo "::endgroup::"
-  fi
-}
-
-lndir() {
-  if [ ! -e $2 ]; then
-    mkdir -p $1
-    ln -sfT $1 $2
-  fi
 }
 
 clone() {
-  echo "::group::Clone repo $1#$2"
-  git clone --depth=1 $1 -b $2 $3
-  echo "::endgroup::"
+  grouprun "clone $1#$2" git clone --depth=1 "$1" -b "$2" "$3"
 }
 
-makeFeeds() {
-  if [ -f "$1/feeds" ]; then
-    echo "use custom feeds $1/feeds"
-    cp "$1/feeds" feeds.conf
-  fi
+applyPatch() {
+  for p in `find $1 -iname "*.patch"`; do
+    # -d	设置工作目录
+    # -N	忽略修补的数据较原始文件的版本更旧，或该版本的修补数据已使　用过
+    # -t	自动略过错误，不询问任何问题
+    patch -Ntp$2 < $p
+  done
 }
 
-updateFeeds() {
-  echo "::group::Update feeds"
-  ./scripts/feeds update $@
-  echo "::endgroup::"
+applyConfig() {
+  for i in `find $1 -iname "*.config"`; do
+    echo apply config $i
+    cat $i >> $2
+  done
 }
 
-installFeeds() {
-  echo "::group::Install feeds"
-  ./scripts/feeds install $@
-  echo "::endgroup::"
+loadProfile() {
+  echo "PROFILE_PATH=$1/profiles/$2" >> $3
+  cat $1/lib/default-env >> $3
+  cat $1/profiles/$2/env >> $3
 }
 
-makeConfig() {
-  echo "::group::Make config"
-  echo "copy config from $1"
-  cat $1/*.config > .config
+move() {
+  [ -e $1 ] && mv $1 $2
+}
+
+runscript() {
+  [ -e $1 ] && $*
+}
+
+loadFeeds() {
+  move "$PROFILE_PATH/$FEEDS_CONF" feeds.conf.default
+  runscript $PROFILE_PATH/$1
+  grouprun "./scripts/feeds update -a"
+  grouprun "./scripts/feeds install -a"
+}
+
+loadConfig() {
+  move "$PROFILE_PATH/files" files
+  move "$PROFILE_PATH/$CONFIG_FILE" .config
+  grouprun "applyConfig $PROFILE_PATH .config"
+  grouprun "applyPatch $PROFILE_PATH 1"
+  runscript $PROFILE_PATH/$1
+  # 确认配置
+  grouprun "cat .config"
   make defconfig
-  cp .config $2/config
-  ./scripts/diffconfig.sh > $2/config.diff
-  echo "::endgroup::"
+  # 确认生成的配置
+  grouprun "cat .config"
+  grouprun "$GITHUB_WORKSPACE/openwrt/scripts/diffconfig.sh"
+  # 确认补丁
+  grouprun "git diff"
+  mkdir bin
+  cp .config bin/config
 }
 
-makeDownload() {
-  echo "::group::Download package"
-  make -j8 V=s download
-  echo "::endgroup::"
+downloadPackage() {
+  make download -j8
+  find dl -size -1024c -exec ls -l {} \;
+  find dl -size -1024c -exec rm -f {} \;
 }
 
-makeCompile() {
-  echo "::group::$(nproc) thread compile"
-  make -j$(nproc) || make -j1 V=s
-  echo "::endgroup::"
+compile() {
+  echo -e "$(nproc) thread compile"
+  make -j$(nproc) || make -j1 || make -j1 V=s
 }
