@@ -20,19 +20,18 @@
 . $GITHUB_WORKSPACE/lib/functions.sh
 
 list="\
-  autosamba              ddns-scripts_aliyun   ddns-scripts_dnspod \
-  luci-app-accesscontrol luci-app-adbyby-plus  luci-app-arpbind      luci-app-autoreboot \
-  luci-app-cpufreq       luci-app-ddns         luci-app-filetransfer luci-app-ipsec-vpnd \
-  luci-app-nlbwmon       luci-app-ramfree      luci-app-ssr-plus     luci-app-turboacc \
-  luci-app-unblockmusic  luci-app-unblockmusic luci-app-upnp         luci-app-vlmcsd \
-  luci-app-vsftpd        luci-app-wol          luci-app-zerotier \
+  autosamba                ddns-scripts_aliyun             ddns-scripts-cloudflare ddns-scripts_dnspod \
+  luci-app-accesscontrol   luci-app-adbyby-plus            luci-app-arpbind        luci-app-autoreboot \
+  luci-app-control-timewol luci-app-control-webrestriction luci-app-control-weburl luci-app-cpufreq \
+  luci-app-ddns            luci-app-filetransfer           luci-app-ipsec-vpnd     luci-app-nlbwmon \
+  luci-app-ramfree         luci-app-ssr-plus               luci-app-timecontrol    luci-app-turboacc \
+  luci-app-unblockmusic    luci-app-unblockmusic           luci-app-upnp           luci-app-vlmcsd \
+  luci-app-vsftpd          luci-app-wol                    luci-app-zerotier \
 "
 for i in $list; do
-  sed -i    "/router:=/,/^\s*$/s/$i//" include/target.mk
+  sed -i "/DEFAULT_PACKAGES:=/,/^\s*$/s/$i//" include/target.mk
   sed -i "/DEFAULT_PACKAGES/,//s/$i//" target/linux/ipq40xx/Makefile
 done
-
-grouprun "git diff"
 
 clone https://github.com/vernesong/OpenClash master package/luci-app-openclash
 
