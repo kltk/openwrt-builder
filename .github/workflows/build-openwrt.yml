@@ -29,16 +29,6 @@ on:
         required: false
         default: false
         type: boolean
-      cacheclean:
-        description: 'set to clean cache'
-        required: false
-        default: false
-        type: boolean
-      toolchain:
-        description: 'check if to cache toolchain'
-        required: false
-        default: true
-        type: boolean
       profile:
         description: '需要编译的配置'
         required: true
@@ -90,12 +80,19 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Cache
-      uses: klever1988/cachewrtbuild@main
+      uses: actions/cache@main
       with:
-        ccache: true
-        toolchain: ${{ github.event.inputs.toolchain }}
-        clean: ${{ github.event.inputs.cacheclean }}
-        prefix: ${{ github.workspace }}/openwrt
+        key: cache-openwrt-${{ env.CACHEKEY }}-${{ hashFiles('openwrt/tools/**', 'openwrt/toolchain/**') }}
+        restore-keys: |
+          cache-openwrt
+          cache-openwrt-${{ env.CACHEKEY }}
+          cache-openwrt-${{ env.CACHEKEY }}-${{ hashFiles('openwrt/tools/**', 'openwrt/toolchain/**') }}
+        path: |
+          ${{ github.workspace }}/openwrt/.ccache
+          ${{ github.workspace }}/openwrt/staging_dir/host*
+          ${{ github.workspace }}/openwrt/staging_dir/tool*
+          ${{ github.workspace }}/openwrt/build_dir/host*
+          ${{ github.workspace }}/openwrt/build_dir/tool*
 
     - name: Load custom feeds
       run: |
