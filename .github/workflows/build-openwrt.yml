@@ -29,10 +29,15 @@ on:
         required: false
         default: false
         type: boolean
+      clean:
+        description: 'clean cache'
+        required: false
+        default: false
+        type: boolean
       profile:
         description: '需要编译的配置'
         required: true
-        default: '["default"]'
+        default: '["acrh17-lienol-2102", "acrh17-lede-1907"]'
 
 env:
   # 默认环境变量在 lib/default-env
@@ -79,14 +84,17 @@ jobs:
         $RUN clone $REPO_URL $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
+
     - name: Cache
       uses: actions/cache@main
       with:
-        key: cache-openwrt-${{ env.CACHEKEY }}-${{ hashFiles('openwrt/tools/**', 'openwrt/toolchain/**') }}
+        key: cache-openwrt-${{ env.CACHEKEY }}-${{ hashFiles('openwrt/tools/**', 'openwrt/toolchain/**') }}-${{steps.date.outputs.date}}
         restore-keys: |
-          cache-openwrt
-          cache-openwrt-${{ env.CACHEKEY }}
-          cache-openwrt-${{ env.CACHEKEY }}-${{ hashFiles('openwrt/tools/**', 'openwrt/toolchain/**') }}
+          ${{github.event.inputs.clean == 'true' && 'ignore-' || ''}}cache-openwrt-${{ env.CACHEKEY }}
+          ${{github.event.inputs.clean == 'true' && 'ignore-' || ''}}cache-openwrt-${{ env.CACHEKEY }}-${{ hashFiles('openwrt/tools/**', 'openwrt/toolchain/**') }}
         path: |
           ${{ github.workspace }}/openwrt/.ccache
           ${{ github.workspace }}/openwrt/staging_dir/host*
@@ -206,4 +214,3 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
