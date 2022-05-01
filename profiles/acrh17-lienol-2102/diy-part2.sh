@@ -13,4 +13,4 @@
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 rm -rf $GITHUB_WORKSPACE/openwrt/feeds/packages/net/miniupnpd
-unzip $PROFILE_PATH/miniupnpd.zip -d $GITHUB_WORKSPACE/openwrt/feeds/packages/net/miniupnpd/
+# unzip $PROFILE_PATH/miniupnpd.zip -d $GITHUB_WORKSPACE/openwrt/feeds/packages/net/miniupnpd/
