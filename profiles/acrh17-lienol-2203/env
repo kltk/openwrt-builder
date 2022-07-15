@@ -1,0 +1,3 @@
+REPO_URL=https://github.com/Lienol/openwrt
+REPO_BRANCH=22.03
+CACHEKEY=lienol2203
