@@ -37,7 +37,7 @@ on:
       profile:
         description: '需要编译的配置'
         required: true
-        default: '["acrh17-lienol-2102", "acrh17-lede-1907"]'
+        default: '["acrh17-lienol-2203"]'
 
 env:
   # 默认环境变量在 lib/default-env
