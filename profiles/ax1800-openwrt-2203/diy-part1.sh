@@ -38,3 +38,5 @@ CCONFIG_RYPTO_CRC32_ARM64=n
 ' >> ./target/linux/ipq60xx/config-4.4
 
 cp -Rf $PROFILE_PATH/diy/* ./
+
+echo "src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git;master" >> feeds.conf.default
