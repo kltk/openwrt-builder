@@ -56,7 +56,7 @@ loadConfig() {
   move "$PROFILE_PATH/files" files
   move "$PROFILE_PATH/$CONFIG_FILE" .config
   grouprun "applyConfig $PROFILE_PATH .config"
-  grouprun "applyPatch $PROFILE_PATH 1"
+  grouprun "applyPatch $PROFILE_PATH/patches 1"
   runscript $PROFILE_PATH/$1
   # 确认配置
   grouprun "cat .config"
