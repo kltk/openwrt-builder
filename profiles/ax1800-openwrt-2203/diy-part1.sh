@@ -37,4 +37,4 @@ CONFIG_PMIC_OPREGION=n
 CCONFIG_RYPTO_CRC32_ARM64=n
 ' >> ./target/linux/ipq60xx/config-4.4
 
-cp -Rf $PROFILE_PATH/diy ./
+cp -Rf $PROFILE_PATH/diy/* ./
