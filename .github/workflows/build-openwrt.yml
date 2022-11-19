@@ -41,12 +41,12 @@ on:
       profile:
         type: choice
         description: 选择配置
-        default: axt1800-515
+        default: '["axt1800-515"]'
         options: 
-        - ac42u-openwrt-2102
-        - acrh17-lede-1907
-        - acrh17-lienol-2102
-        - axt1800-515
+        - '["ac42u-openwrt-2102"]'
+        - '["acrh17-lede-1907"]'
+        - '["acrh17-lienol-2102"]'
+        - '["axt1800-515"]'
 
 env:
   # 默认环境变量在 lib/default-env
