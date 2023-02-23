@@ -1,3 +1,3 @@
 REPO_URL=https://github.com/kirdesde/openwrt_robi
-REPO_BRANCH=ipq60xx_ref
+REPO_BRANCH=ipq60xx_new
 CACHEKEY=axt1800515
