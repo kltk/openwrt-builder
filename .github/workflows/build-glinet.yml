@@ -49,7 +49,7 @@ jobs:
         git config --global user.name 'your name'
         git clone https://github.com/gl-inet/gl-infra-builder.git
         cd gl-infra-builder
-        python3 setup.py -c configs/config-wlan-ap-5.4.yml
+        python3 setup.py -c configs/config-wlan-ap.yml
         cd wlan-ap/openwrt
         git clone https://github.com/gl-inet/glinet4.x.git
         cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk

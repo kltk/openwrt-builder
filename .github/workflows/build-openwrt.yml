@@ -13,9 +13,9 @@ name: Build OpenWrt
 on:
   # release:
   #   types: [published]
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
     # paths:
     #   - 'start'
   # schedule:
@@ -42,7 +42,7 @@ on:
         type: choice
         description: 选择配置
         default: '["axt1800-515"]'
-        options: 
+        options:
         - '["ac42u-openwrt-2102"]'
         - '["acrh17-lede-1907"]'
         - '["acrh17-lienol-2102"]'
@@ -59,7 +59,7 @@ jobs:
     name: Build ${{matrix.profile}}
     strategy:
       fail-fast: false
-      matrix: 
+      matrix:
         profile: ${{ fromJSON( github.event.inputs.profile || '["acrh17-lienol-2102"]') }}
 
     steps:
