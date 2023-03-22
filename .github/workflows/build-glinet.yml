@@ -43,8 +43,7 @@ jobs:
       run: |
         sudo apt install build-essential libncurses5-dev gawk git libssl-dev gettext zlib1g-dev swig unzip time rsync python3 python3-setuptools python3-yaml
 
-    - name: Build
-      id: build
+    - name: Clone Repo
       run: |
         git config --global user.email 'youremail.com'
         git config --global user.name 'your name'
@@ -56,11 +55,21 @@ jobs:
         cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk
         cp ./glinet4.x/pkg_config/glinet_depends_axt1800.yml  ./profiles/glinet_depends.yml
         ./scripts/gen_config.py glinet_depends
-        make V=s -j5 GL_PKGDIR=`pwd`/glinet4.x/ipq60xx/
+
+    - name: Download packages
+      run: |
+        cd gl-infra-builder/wlan-ap/openwrt
+        make download -j8
+
+    - name: Compilethe firmware
+      id: compile
+      run: |
+        cd gl-infra-builder/wlan-ap/openwrt
+        make V=s -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx/
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
-      if: steps.build.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success'
       with:
         name: OpenWrt_bin
         path: gl-infra-builder/wlan-ap/openwrt/bin
