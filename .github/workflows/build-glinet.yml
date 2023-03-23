@@ -60,7 +60,7 @@ jobs:
       working-directory: /workdir/gl-infra-builder/wlan-ap/openwrt
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
-        find bin -iname '*.apk' -delete
+        # find bin -iname '*.apk' -delete
         # rm -f bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
         # ./scripts/diffconfig.sh > bin/targets/ipq807x/ipq60xx/diff.config
         # cp .config bin/targets/ipq807x/ipq60xx/config
