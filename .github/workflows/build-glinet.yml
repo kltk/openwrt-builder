@@ -61,7 +61,7 @@ jobs:
         cd gl-infra-builder/wlan-ap/openwrt
         make download -j8
 
-    - name: Compilethe firmware
+    - name: Compile the firmware
       id: compile
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
@@ -74,8 +74,8 @@ jobs:
         cd gl-infra-builder/wlan-ap/openwrt
         find bin -iname '*.apk' -delete
         rm -f bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
-        ./scripts/diffconfig.sh > bin/targets/ipq807x/ipq60xx/diff.config
-        cp .config bin/targets/ipq807x/ipq60xx/config
+        # ./scripts/diffconfig.sh > bin/targets/ipq807x/ipq60xx/diff.config
+        # cp .config bin/targets/ipq807x/ipq60xx/config
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
