@@ -56,6 +56,15 @@ jobs:
         cp ./glinet4.x/pkg_config/glinet_depends_axt1800.yml  ./profiles/glinet_depends.yml
         ./scripts/gen_config.py glinet_depends
 
+    - name: Organize files
+      working-directory: /workdir/gl-infra-builder/wlan-ap/openwrt
+      run: |
+        cd gl-infra-builder/wlan-ap/openwrt
+        find bin -iname '*.apk' -delete
+        # rm -f bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
+        # ./scripts/diffconfig.sh > bin/targets/ipq807x/ipq60xx/diff.config
+        # cp .config bin/targets/ipq807x/ipq60xx/config
+
     - name: Download packages
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
