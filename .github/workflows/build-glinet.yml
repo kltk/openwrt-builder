@@ -68,12 +68,18 @@ jobs:
         make V=s -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx/
         echo "status=success" >> $GITHUB_OUTPUT
 
+    - name: Upload openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
+      uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success'
+      with:
+        name: openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
+        path: gl-infra-builder/wlan-ap/openwrt/bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
+
     - name: Organize files
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
         find bin -iname '*.apk' -delete
         rm -f bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
-        ./scripts/diffconfig.sh > bin/targets/ipq807x/ipq60xx/diff.config
         cp .config bin/targets/ipq807x/ipq60xx/config
 
     - name: Upload bin directory
