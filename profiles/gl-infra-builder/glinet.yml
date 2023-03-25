@@ -1,0 +1,18 @@
+description: Luci for Gl.inet
+packages:
+  # - libc
+  # - gl-oui-rpc
+  # - luci-base
+  # - luci-mod-rpc
+  # - luci-mod-admin-full
+  # - luci-theme-bootstrap
+  # - luci-app-firewall
+  # - luci-app-opkg
+  # - luci-proto-ppp
+  # - libiwinfo-lua
+  # - luci-proto-ipv6
+  # - rpcd-mod-rrdns
+diffconfig: |
+  CONFIG_LUCI_LANG_en=n
+  # CONFIG_PACKAGE_luci-i18n-base-en=n
+  # CONFIG_PACKAGE_gl-sdk4-luci=n

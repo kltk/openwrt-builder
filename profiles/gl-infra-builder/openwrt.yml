@@ -1,0 +1,22 @@
+diffconfig: |
+  # 开启 ccache
+  CONFIG_DEVEL=y
+  # CONFIG_CCACHE=y
+
+  # 编译配置文件到固件里
+  CONFIG_INCLUDE_CONFIG=y
+  # CONFIG_JSON_OVERVIEW_IMAGE_INFO=y
+  CONFIG_SIGNED_PACKAGES=y
+
+  # for exfat
+  CONFIG_BUILD_PATENTED=y
+
+  # 编译所有内核模块
+  # CONFIG_ALL_KMODS=y
+  # CONFIG_ALL_NONSHARED=y
+
+  # 编译所有包
+  # CONFIG_ALL=y
+
+  # luci 中文
+  CONFIG_LUCI_LANG_zh_Hans=y
