@@ -19,7 +19,7 @@ on:
       profile:
         type: choice
         description: 选择配置
-        # default: '["gl-axt1800"]'
+        default: '["gl-axt1800"]'
         options:
         - '["gl-axt1800"]'
 
@@ -58,7 +58,7 @@ jobs:
         cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk
         # cp ./glinet4.x/pkg_config/glinet_depends_axt1800.yml  ./profiles/glinet_depends.yml
         mkdir -p profiles/kltk
-        cp $GITHUB_WORKSPACE/profiles/gl-nfra-builder/glinet-axt1800.yml ./profiles/kltk/glinet-axt1800.yml
+        cp $GITHUB_WORKSPACE/profiles/gl-nfra-builder/*.yml ./profiles/kltk/
         ./scripts/gen_config.py kltk/glinet-axt1800
 
     - name: Download packages
