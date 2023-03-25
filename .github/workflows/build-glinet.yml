@@ -51,8 +51,8 @@ jobs:
 
     - name: Clone OpenWrt Builder Repo
       run: |
-        git config --global user.email 'youremail.com'
-        git config --global user.name 'your name'
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@github.com"
         git clone https://github.com/gl-inet/gl-infra-builder.git
         cd gl-infra-builder
         python3 setup.py -c configs/config-wlan-ap.yml
@@ -60,6 +60,7 @@ jobs:
         git clone https://github.com/gl-inet/glinet4.x.git
         cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk
         # cp ./glinet4.x/pkg_config/glinet_depends_axt1800.yml  ./profiles/glinet_depends.yml
+        rm ./glinet4.x/ipq60xx/gl-sdk4-*.ipk
         mkdir -p profiles/kltk
         cp $GITHUB_WORKSPACE/profiles/gl-infra-builder/*.yml ./profiles/kltk/
         ./scripts/gen_config.py kltk/glinet-axt1800
