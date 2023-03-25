@@ -57,7 +57,7 @@ jobs:
         git clone https://github.com/gl-inet/glinet4.x.git
         cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk
         # cp ./glinet4.x/pkg_config/glinet_depends_axt1800.yml  ./profiles/glinet_depends.yml
-        cp $GITHUB_WORKSPACE/profiles/gl-nfra-builder/glinet-axt1800.yml ./profiles/kltk/glinet-axt1800.yml
+        cp --parents $GITHUB_WORKSPACE/profiles/gl-nfra-builder/glinet-axt1800.yml ./profiles/kltk/glinet-axt1800.yml
         ./scripts/gen_config.py kltk/glinet-axt1800
 
     - name: Download packages
