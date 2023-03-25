@@ -14,4 +14,4 @@ include:
   - kltk/kernel
   - kltk/nginx
   - kltk/utils
-  # - kltk/glinet
+  - kltk/glinet
