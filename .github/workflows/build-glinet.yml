@@ -3,8 +3,10 @@ name: Build GL-iNet
 on:
   push:
     branches:
-      - 'main/.github/workflows/build-glinet.yml'
-      - 'main/profiles/gl-infra-builder/**/*'
+      - main
+    paths:
+      - .github/workflows/build-glinet.yml
+      - 'profiles/gl-infra-builder/**/*'
   workflow_dispatch:
     inputs:
       ssh:
