@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - .github/workflows/build-glinet.yml
-      - 'profiles/gl-infra-builder/**/*'
+      - profiles/gl-infra-builder/**/*
   workflow_dispatch:
     inputs:
       ssh:
