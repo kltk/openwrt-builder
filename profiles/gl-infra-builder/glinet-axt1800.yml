@@ -10,8 +10,8 @@ description:
   - Add the glinet imagebuilder
 include:
   - kltk/axt1800
-  - kltk/nginx
   - kltk/openwrt
-  - kltk/kernel
-  - kltk/utils
-  - kltk/glinet
+  # - kltk/kernel
+  # - kltk/nginx
+  # - kltk/utils
+  # - kltk/glinet
