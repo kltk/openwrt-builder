@@ -13,5 +13,5 @@ include:
   - kltk/openwrt
   - kltk/kernel
   - kltk/nginx
-  # - kltk/utils
+  - kltk/utils
   # - kltk/glinet
