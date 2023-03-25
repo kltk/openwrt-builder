@@ -11,7 +11,7 @@ description:
 include:
   - kltk/axt1800
   - kltk/openwrt
-  # - kltk/kernel
-  # - kltk/nginx
+  - kltk/kernel
+  - kltk/nginx
   # - kltk/utils
   # - kltk/glinet
