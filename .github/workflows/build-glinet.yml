@@ -60,7 +60,7 @@ jobs:
         git clone https://github.com/gl-inet/glinet4.x.git
         cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk
         # cp ./glinet4.x/pkg_config/glinet_depends_axt1800.yml  ./profiles/glinet_depends.yml
-        rm ./glinet4.x/ipq60xx/gl-sdk4-*.ipk
+        rm ./glinet4.x/ipq60xx/gl-sdk4-luci*.ipk
         mkdir -p profiles/kltk
         cp $GITHUB_WORKSPACE/profiles/gl-infra-builder/*.yml ./profiles/kltk/
         ./scripts/gen_config.py kltk/glinet-axt1800
@@ -84,7 +84,7 @@ jobs:
       id: compile
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
-        make V=s -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx/
+        make V=s -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
