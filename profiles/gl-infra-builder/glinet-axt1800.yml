@@ -15,3 +15,21 @@ include:
   - kltk/nginx
   - kltk/utils
   - kltk/glinet
+packages:
+  - luci-app-aria2
+  - luci-app-zerotier
+  - luci-app-samba4
+  # - luci-ssl
+  - luci-app-cpufreq
+  # - luci-app-turboacc
+  - luci-app-upnp
+  - kmod-mmc
+  - kmod-sdhci
+  - kmod-tcp-bbr
+  - mmc-utils
+  # - iptables-mod-fullconenat
+diffconfig: |
+  CONFIG_PACKAGE_luci-app-openclash=m
+  CONFIG_PACKAGE_luci-app-diskman=m
+  CONFIG_PACKAGE_luci-app-smartdns=m
+  CONFIG_PACKAGE_luci-app-transmission=m
