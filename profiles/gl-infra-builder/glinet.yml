@@ -14,5 +14,5 @@ description: Luci for Gl.inet
 #   # - rpcd-mod-rrdns
 diffconfig: |
   CONFIG_LUCI_LANG_en=n
-  # CONFIG_PACKAGE_luci-i18n-base-en=n
+  CONFIG_PACKAGE_luci-i18n-base-en=n
   # CONFIG_PACKAGE_gl-sdk4-luci=n

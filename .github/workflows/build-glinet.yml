@@ -65,6 +65,16 @@ jobs:
         cp $GITHUB_WORKSPACE/profiles/gl-infra-builder/*.yml ./profiles/kltk/
         ./scripts/gen_config.py kltk/glinet-axt1800
 
+    - name: show config
+      run: |
+        cd gl-infra-builder/wlan-ap/openwrt
+        echo ::group::diffconfig
+        ./scripts/diffconfig.sh
+        echo ::endgroup::
+        echo ::group::config
+        cat .config
+        echo ::endgroup::
+
     - name: Download packages
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
