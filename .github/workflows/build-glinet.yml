@@ -55,11 +55,13 @@ jobs:
         git config --global user.email "github-actions[bot]@github.com"
         git clone https://github.com/gl-inet/gl-infra-builder.git
         cd gl-infra-builder
+
+        mkdir feeds/fullconenat
+        git clone -b master https://github.com/LGA1150/openwrt-fullconenat feeds/fullconenat/fullconenat
+
         python3 setup.py -c configs/config-wlan-ap.yml
         cd wlan-ap/openwrt
 
-        mkdir -p feeds/fullcone
-        git clone -b master https://github.com/LGA1150/openwrt-fullconenat ../feeds/fullconenat/fullconenat
         # patch FULLCONENAT
         mkdir package/network/config/firewall/patches
         wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch

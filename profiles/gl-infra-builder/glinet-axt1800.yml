@@ -15,6 +15,9 @@ include:
   - kltk/nginx
   - kltk/utils
   - kltk/glinet
+feeds:
+  - name: fullconenat
+    path: ../../feeds/fullconenat
 packages:
   - luci-app-aria2
   - luci-app-zerotier
