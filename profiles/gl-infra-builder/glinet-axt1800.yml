@@ -47,7 +47,7 @@ packages:
   - mmc-utils
   # - iptables-mod-fullconenat
 diffconfig: |
-  CONFIG_PACKAGE_luci-app-openclash=m
+  # CONFIG_PACKAGE_luci-app-openclash=m
   CONFIG_PACKAGE_luci-app-diskman=m
   CONFIG_PACKAGE_luci-app-smartdns=m
   CONFIG_PACKAGE_luci-app-transmission=m
