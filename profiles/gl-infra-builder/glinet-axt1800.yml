@@ -45,7 +45,7 @@ packages:
   - kmod-sdhci
   - kmod-tcp-bbr
   - mmc-utils
-  - iptables-mod-fullconenat
+  # - iptables-mod-fullconenat
 diffconfig: |
   CONFIG_PACKAGE_luci-app-openclash=m
   CONFIG_PACKAGE_luci-app-diskman=m
