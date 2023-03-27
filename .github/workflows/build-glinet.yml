@@ -88,13 +88,13 @@ jobs:
     - name: Download packages
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
-        make download -j8
+        make download -j8 || make download -j1 V=s
 
     - name: Compile the firmware
       id: compile
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
-        make V=s -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx
+        make -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx || make -j1 V=s GL_PKGDIR=`pwd`/glinet4.x/ipq60xx
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
