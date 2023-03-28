@@ -16,10 +16,10 @@ include:
   - kltk/utils
   - kltk/glinet
 feeds:
-  - name: kenzok8_packages
-    uri: https://github.com/kenzok8/openwrt-packages.git
-    branch: master
-    # revision: 972aed0edbbde4f5d903bf3e0c47c6455cb32fae
+  # - name: kenzok8_packages
+  #   uri: https://github.com/kenzok8/openwrt-packages.git
+  #   branch: master
+  #   # revision: 972aed0edbbde4f5d903bf3e0c47c6455cb32fae
   - name: immortalwrt_luci
     uri: https://github.com/immortalwrt/luci.git
     branch: openwrt-21.02
@@ -27,7 +27,7 @@ feeds:
   # - name: small_package
   #   uri: https://github.com/kenzok8/small-package.git
   #   branch: main
-    # revision: 52e68fd611d2b4f5c2fdbb0213a2560a6279a7d3
+  #   # revision: 52e68fd611d2b4f5c2fdbb0213a2560a6279a7d3
   # - name: kiddin9
   #   uri: https://github.com/kiddin9/openwrt-packages.git
   #   branch: master
