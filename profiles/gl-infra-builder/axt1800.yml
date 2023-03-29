@@ -1,7 +1,7 @@
 feeds:
-  - name: gl_feeds_wlanap
-    revision: 5df1bae20bf4f2bd39168707e6363bcf8bdf5f29
-    uri: https://github.com/gl-inet/gl-feeds.git
+  # - name: gl_feeds_wlanap
+  #   revision: 5df1bae20bf4f2bd39168707e6363bcf8bdf5f29
+  #   uri: https://github.com/gl-inet/gl-feeds.git
   - name: gl_feeds_common
     revision: 017bd93a03ccde84b3b48030d5048ad09494b2f0
     uri: https://github.com/gl-inet/gl-feeds.git
