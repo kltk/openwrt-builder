@@ -62,6 +62,19 @@ jobs:
         python3 setup.py -c configs/config-wlan-ap.yml
         cd wlan-ap/openwrt
 
+        # patch FULLCONENAT
+        mkdir package/network/config/firewall/patches
+        wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch
+
+        git clone https://github.com/gl-inet/glinet4.x.git
+        cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk
+        # cp ./glinet4.x/pkg_config/glinet_depends_axt1800.yml  ./profiles/glinet_depends.yml
+        rm ./glinet4.x/ipq60xx/gl-sdk4-luci*.ipk
+        mkdir -p profiles/kltk
+        cp $GITHUB_WORKSPACE/profiles/gl-infra-builder/*.yml ./profiles/kltk/
+
+        ./scripts/gen_config.py kltk/glinet-axt1800
+
         # remove duplicate package
         rm -rf feeds/immortalwrt_luci/applications/luci-app-acl
         rm -rf feeds/immortalwrt_luci/applications/luci-app-acme
@@ -342,19 +355,6 @@ jobs:
         rm -rf feeds/small_package/uwsgi
         rm -rf feeds/small_package/watchcat
         rm -rf feeds/small_package/xray-core
-
-        # patch FULLCONENAT
-        mkdir package/network/config/firewall/patches
-        wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch
-
-        git clone https://github.com/gl-inet/glinet4.x.git
-        cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk
-        # cp ./glinet4.x/pkg_config/glinet_depends_axt1800.yml  ./profiles/glinet_depends.yml
-        rm ./glinet4.x/ipq60xx/gl-sdk4-luci*.ipk
-        mkdir -p profiles/kltk
-        cp $GITHUB_WORKSPACE/profiles/gl-infra-builder/*.yml ./profiles/kltk/
-
-        ./scripts/gen_config.py kltk/glinet-axt1800
 
     - name: show config
       run: |
