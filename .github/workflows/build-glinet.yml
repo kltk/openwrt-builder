@@ -381,6 +381,7 @@ jobs:
       id: compile
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
+        make package/feeds/luci/luci-base/compile V=s
         make -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx || make -j1 V=s GL_PKGDIR=`pwd`/glinet4.x/ipq60xx
         echo "status=success" >> $GITHUB_OUTPUT
 
