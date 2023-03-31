@@ -38,7 +38,7 @@ packages:
   - luci-app-zerotier
   - luci-app-samba4
   # - luci-ssl
-  - luci-app-cpufreq
+  # - luci-app-cpufreq
   # - luci-app-turboacc
   - luci-app-upnp
   - kmod-mmc
