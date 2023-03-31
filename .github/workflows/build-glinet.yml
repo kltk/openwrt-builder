@@ -59,8 +59,12 @@ jobs:
         mkdir feeds/fullconenat
         git clone -b master https://github.com/LGA1150/openwrt-fullconenat feeds/fullconenat/fullconenat
 
+        # 显示 patch 进度
+        sed -i '158a\            print(f"patching {str(patch)}")' setup.py
         sed -i '153a\            print(f"patching {str(patch)}")' setup.py
-        cat setup.py
+        # 删除不可用patch
+        rm -rf patches-wlan-ap/openwrt/0001-image-support-append-gl-metadata.patch
+
         python3 setup.py -c configs/config-wlan-ap.yml
         cd wlan-ap/openwrt
 
