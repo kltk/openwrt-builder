@@ -34,6 +34,7 @@ feeds:
   - name: fullconenat
     path: ../../feeds/fullconenat
 packages:
+  - luci-base
   - luci-app-aria2
   - luci-app-zerotier
   - luci-app-samba4
