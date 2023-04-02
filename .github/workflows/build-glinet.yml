@@ -382,7 +382,7 @@ jobs:
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
         make -j1 V=s feeds/luci/modules/luci-base host-compile && make -j1 V=s feeds/luci/modules/luci-base compile
-        make -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx && make -j1 V=s GL_PKGDIR=`pwd`/glinet4.x/ipq60xx
+        make -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx || make -j1 V=s GL_PKGDIR=`pwd`/glinet4.x/ipq60xx
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
