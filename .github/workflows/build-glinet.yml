@@ -62,8 +62,6 @@ jobs:
         # 显示 patch 进度
         sed -i '158a\            print(f"patching {str(patch)}")' setup.py
         sed -i '153a\            print(f"patching {str(patch)}")' setup.py
-        # 删除不可用patch
-        # rm -rf patches-wlan-ap/openwrt/0001-image-support-append-gl-metadata.patch
 
         # fetch qca-nss-client patch
         wget -P patches-wlan-ap/ https://github.com/Telecominfraproject/wlan-ap/commit/ebd7c79e65ee403149a11870a91a9bf9fc20dd03.patch
@@ -384,18 +382,10 @@ jobs:
       id: compile
       run: |
         cd gl-infra-builder/wlan-ap/openwrt
-        # make -j1 V=s feeds/luci/modules/luci-base Host/compile && make -j1 V=s feeds/luci/modules/luci-base compile
-        # make -j1 V=s package/feeds/luci/luci-base/compile
         make -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx || (
           (
-            make -j1 V=s package/feeds/luci/modules/luci-base/compile ||
-            make -j1 V=s package/feeds/luci/modules/luci-base compile ||
-            make -j1 V=s package/feeds/luci/luci-base/compile ||
-            make -j1 V=s package/feeds/luci/luci-base compile ||
             make -j1 V=s feeds/luci/modules/luci-base/compile ||
-            make -j1 V=s feeds/luci/modules/luci-base compile ||
-            make -j1 V=s feeds/luci/luci-base/compile ||
-            make -j1 V=s feeds/luci/luci-base compile
+            make -j1 V=s feeds/luci/modules/luci-base compile
             ) && (
             make -j$(nproc) GL_PKGDIR=`pwd`/glinet4.x/ipq60xx ||
             make -j1 V=s GL_PKGDIR=`pwd`/glinet4.x/ipq60xx
