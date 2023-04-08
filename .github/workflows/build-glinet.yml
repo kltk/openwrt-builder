@@ -61,7 +61,7 @@ jobs:
 
         git clone --depth 1 -b master https://github.com/vernesong/OpenClash openclash
 
-        ln -s openclash/luci-app-openclash feeds/fullconenat/
+        ln -s ../../openclash/luci-app-openclash feeds/fullconenat/
 
         # 显示 patch 进度
         sed -i '158a\            print(f"patching {str(patch)}")' setup.py
