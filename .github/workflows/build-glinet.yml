@@ -73,6 +73,7 @@ jobs:
         # patch FULLCONENAT
         mkdir package/network/config/firewall/patches
         wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch
+        cp $GITHUB_WORKSPACE/profiles/gl-infra-builder/fullconenat-luci.patch ../../patches-wlan-ap/
 
         git clone https://github.com/gl-inet/glinet4.x.git
         cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk
