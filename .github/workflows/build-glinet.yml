@@ -70,8 +70,6 @@ jobs:
         python3 setup.py -c configs/config-wlan-ap.yml
         cd wlan-ap/openwrt
 
-        ls -al ../../feeds/fullconenat
-
         # patch FULLCONENAT
         mkdir package/network/config/firewall/patches
         wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch
@@ -85,12 +83,10 @@ jobs:
 
         ./scripts/gen_config.py kltk/glinet-axt1800
 
-        # Patch LuCI
-        pushd feeds/luci
-        wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
-        popd
-
-        ls -al feeds/*
+        # # Patch LuCI
+        # pushd feeds/luci
+        # wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
+        # popd
 
         # remove duplicate package
         rm -rf feeds/immortalwrt_luci/applications/luci-app-acl
