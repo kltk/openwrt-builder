@@ -86,6 +86,8 @@ jobs:
 
         ./scripts/gen_config.py kltk/glinet-axt1800
 
+        ls -al feeds/*
+
         # remove duplicate package
         rm -rf feeds/immortalwrt_luci/applications/luci-app-acl
         rm -rf feeds/immortalwrt_luci/applications/luci-app-acme
