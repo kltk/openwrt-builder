@@ -288,10 +288,6 @@ packages:
   - luci-app-firewall
   - luci-app-opkg
   - luci-base
-  - luci-i18n-base-en
-  - luci-i18n-base-zh-cn
-  - luci-i18n-firewall-zh-cn
-  - luci-i18n-opkg-zh-cn
   - luci-lib-base
   - luci-lib-ip
   - luci-lib-json
@@ -370,8 +366,6 @@ packages:
   - stubby
   - sudo
   - swconfig
-  - tailscale
-  - tailscaled
   - tc-mod-iptables
   - tc-tiny
   - terminfo
@@ -504,4 +498,3 @@ diffconfig: |
   # CONFIG_NGINX_HTTP_UPSTREAM_LEAST_CONN is not set
   # CONFIG_NGINX_HTTP_USERID is not set
   # CONFIG_NGINX_NAXSI is not set
-  CONFIG_LUCI_LANG_en=y

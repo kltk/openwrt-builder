@@ -13,6 +13,5 @@ description: Luci for Gl.inet
 #   # - luci-proto-ipv6
 #   # - rpcd-mod-rrdns
 diffconfig: |
-  CONFIG_LUCI_LANG_en=n
-  CONFIG_PACKAGE_luci-i18n-base-en=n
+  CONFIG_LUCI_LANG_zh_Hans=y
   # CONFIG_PACKAGE_gl-sdk4-luci=n

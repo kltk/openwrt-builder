@@ -31,8 +31,8 @@ feeds:
   # # - name: kiddin9
   # #   uri: https://github.com/kiddin9/openwrt-packages.git
   # #   branch: master
-  - name: fullconenat
-    path: ../../../feeds/fullconenat
+  - name: custom
+    path: ../../../feeds/custom
 packages:
   - luci-app-aria2
   - luci-app-zerotier
