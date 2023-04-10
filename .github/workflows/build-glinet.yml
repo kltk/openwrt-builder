@@ -79,15 +79,11 @@ jobs:
         cp ./glinet4.x/pkg_config/gl_pkg_config_axt1800.mk  ./glinet4.x/ipq60xx/gl_pkg_config.mk
         # cp ./glinet4.x/pkg_config/glinet_depends_axt1800.yml  ./profiles/glinet_depends.yml
         rm ./glinet4.x/ipq60xx/gl-sdk4-luci*.ipk
+        rm ./glinet4.x/ipq60xx/gl-sdk4-tailscale*.ipk
         mkdir -p profiles/kltk
         cp $GITHUB_WORKSPACE/profiles/gl-infra-builder/*.yml ./profiles/kltk/
 
         ./scripts/gen_config.py kltk/glinet-axt1800
-
-        # # Patch LuCI
-        # pushd feeds/luci
-        # wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
-        # popd
 
         # remove duplicate package
         rm -rf feeds/immortalwrt_luci/applications/luci-app-acl
